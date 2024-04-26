@@ -1,19 +1,18 @@
 import React from 'react';
 import Item from '../item/item';
-import { Wrap, Spacer} from '@chakra-ui/react';
+import { Wrap, Spacer, Flex, Box} from '@chakra-ui/react';
 
 
 const ItemList = ({data}) => {
     
   return (
-    <Wrap m={'20'}>
+    <Wrap justify={'center'} align={'center'} mt={'20'} mb={'20'} spacing={'7'}>
         {data.map((el) => (
-          <div key={el.id}>
+          <Box key={el.id}>
             <Item {...el} />
-          </div>
+          </Box>
         ))}
     </Wrap>
-  )
-}
-// className='itemList'
+  );
+};
 export default ItemList

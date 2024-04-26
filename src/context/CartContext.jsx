@@ -10,20 +10,20 @@ export const CartContextProvider = ({ children }) => { //definir proveedor que e
     const addItem =(productToAdd, quantity) => {
         const newProduct = {
             ...productToAdd, //crea un solo objeto con las propiedades del producto
-            quantity // cantidad esta aparte
+            quantity // cantidad está aparte
         };
         if(isInCart(newProduct.id)){
             const actualizarCantidad = cart.map((producto) =>{ //map recorre todo el carrito, si algun id de algun producto coincide con newProduct.id, some devuelve true
                 if (producto.id === newProduct.id){
-                    return {...producto, quantity: producto.quantity + newProduct.quantity}
+                    return {...producto, quantity: producto.quantity + newProduct.quantity};
                      //agarras todas las propiedades del producto y actualizas la cantidad
-                }
+                };
                 return producto
             });
-            setCart(actualizarCantidad)
+            setCart(actualizarCantidad);
         }else{
             setCart([...cart, newProduct]); //agarras cart y le introduces lo que hay en newProduct
-        }
+        };
     };
 
     const isInCart = (id) => {

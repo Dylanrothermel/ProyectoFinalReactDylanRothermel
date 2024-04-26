@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect} from 'react';
 import {
     FormControl,
     FormLabel,
@@ -19,9 +19,9 @@ const CheckOut = () => {
         email: "",
         sameEmail: "",
         phone: ""
-    })
+    });
 
-    const { cart, getTotal, clearCart } = useContext(Context)
+    const { cart, getTotal, clearCart } = useContext(Context);
     
 
     
@@ -30,13 +30,14 @@ const CheckOut = () => {
         setData((user) => ({
             ...user,
             [event.target.name]: event.target.value
-        }))
-    }
+        }));
+    };
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     
-    const [ emailMatch, setEmailMatch] = useState(false)
+    
+    const [ emailMatch, setEmailMatch] = useState(true)
     const validateEmails = () => {
         if(user.email === user.sameEmail){
             setEmailMatch(true)
@@ -44,57 +45,88 @@ const CheckOut = () => {
             setEmailMatch(false)
         }
     }
-
+    
     
 
     
 
-    const getOrder = async () =>{
+    const getOrder = async () => {
         validateEmails()
-        console.log(user)
-        console.log(emailMatch)
-        if(emailMatch){
-            const queryRef = collection(db, 'orders')
+        const isFormValid = validate(user)
+        if(isFormValid && emailMatch){
+            const queryRef = collection(db, 'orders');
             try {
                 const order = {
                     buyer: user,
                     cart: cart,
                     total: getTotal()
-                }
-                
+                };
+      
                 const orderDocRef = await addDoc(queryRef, order)
                 Swal.fire({
                     title: "Gracias por tu compra",
                     icon: "success"
-                  }).then(() => {
+                }).then(() => {
                     clearCart()
                     navigate('/')
-                  }).catch((error) => console.log(error))
+                }).catch((error) => console.log(error))
             } catch (error) {
-                console.log(error)
-            }
+            console.log(error)
+            };
         }else{
             Swal.fire({
-                title: "Error",
-                text: `Por favor, verifica que los datos ingresados sean correctos`,
+                title: "error",
                 icon: "error"
-              })
+            })
+            console.log(error)
+            console.log(emailMatch)
+            console.log(isFormValid)
         }
-    }
+    };
+
+    const [error, setError] = useState({});
+
+    
+
+    const validate = (userr) => {
+        let errors = {};
+        if(user.name === ''){
+            errors.nombre = 'El nombre es requerido';
+            setError(errors)
+        }
+
+        if (user.email === ''){
+            errors.email = 'El email es requerido';
+            setError(errors)
+        }
+
+        if (user.sameEmail != user.email){
+            errors.sameEmail = 'El email no coincide';
+            setError(errors)
+        }
+
+        if (user.phone.length < 8){
+            errors.phone = 'El número de teléfono tiene que tener 8 caracteres';
+            setError(errors)
+        }
+    };
+    
+    
+    
      
   return (
     <FormControl>
         <FormLabel>Nombre</FormLabel>
-        <Input type='text' name = "name"  onChange={updateUser} />
+        <Input type='text' name = "name" onChange={updateUser} />
         <FormLabel>Email</FormLabel>
-        <Input type='email' name = "email"  onChange={updateUser} />
+        <Input type='email' name = "email" onChange={updateUser} />
         <FormLabel>Confirmar Email</FormLabel>
-        <Input type='email' name = "sameEmail"  onChange={updateUser} />
+        <Input type='email' name = "sameEmail" onChange={updateUser} />
         <FormLabel>Telefono</FormLabel>
-        <Input type='text' name = "phone"  onChange={updateUser} />
+        <Input type='text' name = "phone" onChange={updateUser} />
         <Button onClick={getOrder}>Finalizar compra</Button>
     </FormControl>
-  )
-}
+  );
+};
 
 export default CheckOut

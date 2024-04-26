@@ -18,7 +18,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const Carrito = () => {
-  const { cart, getTotal, clearCart, removeItem} = useContext(CartContext)
+  const { cart, getTotal, clearCart, removeItem} = useContext(CartContext);
   return (
     <>
       {
@@ -51,8 +51,8 @@ const Carrito = () => {
                         <Td>{new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'ARG', maximumFractionDigits: 0,  minimumFractionDigits: 0 }).format(producto.precio * producto.quantity)}</Td>
                         <Td><Button onClick={() => removeItem(producto.id)}> Eliminar</Button></Td>
                       </Tr>
-                      ))
-                    }
+                    ))
+                  }
                   
               </Tbody>
               <Tfoot>
@@ -64,9 +64,9 @@ const Carrito = () => {
               </Tfoot>
             </Table>
         </TableContainer>
-      }
+      };
     </>
-  )
-}
+  );
+};
 
 export default Carrito

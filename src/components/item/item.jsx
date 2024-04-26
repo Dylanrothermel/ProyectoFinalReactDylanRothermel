@@ -3,10 +3,11 @@ import { Card, CardHeader, CardBody, CardFooter, Stack, Image, Heading, Button, 
 import { Link } from 'react-router-dom';
 const Item = ({nombre, descripcion, precio, id, img}) => {
     const displayPrecio = new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'ARG', maximumFractionDigits: 0, 
-    minimumFractionDigits: 0 }).format(precio)
+    minimumFractionDigits: 0 }).format(precio);
     
   return (
-    <Card maxW={'sm'} boxShadow='dark-lg' p={'6'} rounded='md'>
+    <Card maxW={'sm'} boxShadow='dark-lg' p={'5'} rounded='md'> 
+    
     <CardBody>
         <Image
         src={img}
@@ -30,13 +31,8 @@ const Item = ({nombre, descripcion, precio, id, img}) => {
     </CardFooter>
     </Card>
     
-  )
-}
+  );
+};
 
 export default Item
 
-{/* <ButtonGroup spacing='2'>
-        <Button variant='solid' colorScheme='blue'>
-        <Link to={`/product/${id}`}> Ver detalle</Link>
-        </Button>
-        </ButtonGroup> */}
