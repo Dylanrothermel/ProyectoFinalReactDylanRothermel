@@ -11,7 +11,7 @@ const CartWidget = () => {
         <Link to="/cart"><CiShoppingCart  className='cartWidget'/></Link>
         <Text className='cantidad' ml={2}>{getQuantity()}</Text>
     </Flex>
-  )
-}
+  );
+};
 
 export default CartWidget

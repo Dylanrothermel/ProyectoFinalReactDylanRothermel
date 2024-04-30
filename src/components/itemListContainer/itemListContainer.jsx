@@ -20,13 +20,13 @@ const ItemListContainer = ({ title }) => {
     setLoading(true);
     const getData = async() => {
       const queryRef = !categoryId ? collection(db, "productos") : query(collection(db, "productos"), where("categoria", "==", categoryId));
-      // si no hay categoria va a traer todos los productos, si hay categoria va a hacer una query en la collecion, va a traer aquellos productos donde la categoria sea igual al categoryId
+      
 
       const response = await getDocs(queryRef);
 
-      const products = response.docs.map((doc) => { // agarrar docs de el array de response
-        const newObj = { // crear un nuevo documento
-          ...doc.data(), // string operator de la data y hay que ponerle id
+      const products = response.docs.map((doc) => { 
+        const newObj = { 
+          ...doc.data(), 
           id: doc.id
         };
         return newObj
@@ -39,18 +39,20 @@ const ItemListContainer = ({ title }) => {
   }, [categoryId]);
 
   return (
-    <Flex >
+    <div >
       
       {
         loading ?
-        <Spinner />:
+        <Flex justify={'center'} align={'center'} h={'90vh'}>
+          <Spinner size={'xl'}/>
+        </Flex>
+          :
 
         <>
-        <h1>{title}</h1>
         <ItemList data={data} />
         </>
       }
-    </Flex>
+    </div>
   );
 };
 

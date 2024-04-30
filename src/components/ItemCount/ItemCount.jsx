@@ -15,10 +15,10 @@ const ItemCount = ({stock, initialValue, onAdd}) => {
     };
   return (
     <div className='itemCount'>
-        <Button className="btnCounter"onClick={decrementar} colorScheme='red'>-</Button>
+        <button className="btnCounterMinus" onClick={decrementar}>-</button>
         <h2>{count}</h2>
-        <Button className="btnCounter"onClick={incrementar} colorScheme='green'>+</Button>
-        <Button colorScheme='blue' ml={2} onClick={() => {onAdd(count); notificacion(); }}>Agregar al carrito</Button>
+        <button className="btnCounterPlus" onClick={incrementar}>+</button>
+        <button className='btnAdd' onClick={() => {onAdd(count); notificacion(); }}>Agregar al carrito</button>
     </div>
   );
 };

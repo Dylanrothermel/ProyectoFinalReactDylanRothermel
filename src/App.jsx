@@ -2,7 +2,6 @@ import React from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import NavBar from './components/navBar/navBar';
 import ItemListContainer from './components/itemListContainer/itemListContainer';
-import './App.css';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 import { CartContextProvider } from "./context/CartContext";

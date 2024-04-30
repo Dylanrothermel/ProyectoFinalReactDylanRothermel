@@ -18,19 +18,17 @@ import {
 import { Link } from 'react-router-dom';
 
 const Carrito = () => {
-  const { cart, getTotal, clearCart, removeItem} = useContext(CartContext);
-  return (
-    <>
-      {
-          cart.length === 0 ?
-          <Flex  direction={'column'} align={'center'}>
-            <Heading> Todavía no agregaste ningún producto al carrito</Heading>
-            <Heading><Link to='/'>Ver productos</Link></Heading>
+    const { cart, getTotal, clearCart, removeItem} = useContext(CartContext);
+    if(cart.length === 0) {
+      return(
+          <Flex direction={'column'} align={'center'} mt={10}>
+              <Heading>Todavía no agregaste productos al carrito</Heading>
+              <Heading><Link to='/'>Ver productos</Link></Heading>
           </Flex>
-            :
-   
-
-        <TableContainer>
+      )
+  }else {
+    return (
+      <TableContainer>
             <Table variant='simple'>
               <Thead>
                 <Tr>
@@ -64,9 +62,8 @@ const Carrito = () => {
               </Tfoot>
             </Table>
         </TableContainer>
-      };
-    </>
-  );
+    )
+  };
 };
 
 export default Carrito

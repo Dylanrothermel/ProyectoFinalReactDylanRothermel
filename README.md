@@ -10,11 +10,12 @@ E-commerce realizado en el curso de ReactJS de Coderhouse
 
 ### Muestra de como funciona
 
+![alt text](ScreenRecorderProject1.gif)
 
 ---
 
 ### Deploy
-    [React E-commerce](Link al deploy) - Deploy en Vercel
+    [React E-commerce](https://pre-entrega2-dylan-rothermel.vercel.app/) - Deploy en Vercel
 
 ## Herramientas
     Chakra

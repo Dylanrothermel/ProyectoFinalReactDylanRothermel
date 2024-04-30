@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Spinner } from '@chakra-ui/react';
+import { Spinner, Flex } from '@chakra-ui/react';
 import ItemDetail from '../itemDetail/ItemDetail';
 import { doc, getDoc, query } from 'firebase/firestore';
 import { db } from '../../config/firebase';
@@ -29,10 +29,12 @@ const ItemDetailContainer = () => {
     <div>
       {
         loading ?
-        <Spinner />:
-
+        <Flex justify={'center'} align={'center'} h={'90vh'}>
+          <Spinner size={'xl'}/>
+        </Flex>
+        :
         <>
-        <ItemDetail {...product}/>
+          <ItemDetail {...product}/>
         </>
       }
     </div>
