@@ -22,14 +22,15 @@ const ItemDetail = ({categoria, descripcion, img, nombre, precio, stock, id}) =>
   };
   return (
     
-    <main>
-      <div className="container">
+    
         <div className="producat_wrapper">
           <div className="producat_image">
             <img src={img} alt="" />
           </div>
           <div className="producat_content">
             <h2>{nombre}</h2>
+            <h3>Stock: {stock}</h3>
+            <h4>Categoría: {categoria}</h4>
             <p className="producat_des">
               {descripcion}
             </p>
@@ -45,8 +46,7 @@ const ItemDetail = ({categoria, descripcion, img, nombre, precio, stock, id}) =>
             </div>
           </div>
         </div>
-      </div>
-    </main>
+
       
         
     
